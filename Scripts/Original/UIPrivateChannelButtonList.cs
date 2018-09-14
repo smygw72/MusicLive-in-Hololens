@@ -50,7 +50,7 @@ public class UIPrivateChannelButtonList : MonoBehaviour
             }
             if (pc.audioSource == null) Debug.Log(name + "にAudioSourceが割り当てられませんでした");
 
-            // コールバック関数を登録
+            // イベントを登録
             Button btn = pc.btn;
             if (btn == null) { continue; }
             //btn.onClick.AddListener(() => OnClick_Log(pc.name));

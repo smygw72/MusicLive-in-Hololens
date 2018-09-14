@@ -35,7 +35,7 @@ public class UIMusicButtonList : MonoBehaviour
     {
         foreach (MusicChannel mc in MusicList)
         {
-            // コールバック関数を登録
+            // イベントを登録
             Button btn = mc.btn;
             if (btn == null) { continue; }
             //btn.onClick.AddListener(() => OnClick_Log(pc.name));

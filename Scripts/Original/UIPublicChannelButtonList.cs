@@ -20,7 +20,7 @@ public class UIPublicChannelButtonList : MonoBehaviour
         // Error処理
         if (publicSource == null) Debug.Log(publicName + "にAudioSourceが割り当てられませんでした");
 
-        // コールバック関数を登録
+        // イベントを登録
         if (publicBtn != null)
         {
             //publicBtn.onClick.AddListener(() => OnClick_Log());
