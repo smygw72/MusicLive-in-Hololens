@@ -8,7 +8,7 @@ public class MovePrivateSoundsPosition : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        publicSound = GameObject.Find("PublicSound");
+        publicSound = GameObject.Find("PublicSpeaker");
 	}
 	
 	// Update is called once per frame
