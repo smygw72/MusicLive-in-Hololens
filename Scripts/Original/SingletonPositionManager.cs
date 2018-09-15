@@ -15,6 +15,11 @@ public class SingletonPositionManager : SingletonMonoBehaviour<SingletonPosition
         }
     }
 
+    private void Update()
+    {
+        publicSpeakerPosition = GameObject.Find("PublicSpeaker").transform.position;
+    }
+
     public void OnSceneUnloaded_SavePublicSpeakerPosition()
     {
         publicSpeakerPosition = GameObject.Find("PublicSpeaker").transform.position;

@@ -48,6 +48,6 @@ public class SingletonSceneManager : SingletonMonoBehaviour<SingletonSceneManage
     private void OnSceneUnloaded(Scene scene)
     {
         // PublicPositionをセーブする
-        singletonPositionManager.OnSceneUnloaded_SavePublicSpeakerPosition();
+        //singletonPositionManager.OnSceneUnloaded_SavePublicSpeakerPosition();
     }
 }
