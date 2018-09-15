@@ -26,13 +26,16 @@ public class UIMusicButtonList : MonoBehaviour
     [SerializeField]
     private List<MusicChannel> MusicList;
 
-    public void OnSceneLoaded_RegisterButtonEvent(Scene scene,LoadSceneMode mode)
+    public void OnSceneLoaded_RegisterButtonEvent(Scene scene, LoadSceneMode mode)
     {
         foreach (MusicChannel mc in MusicList)
         {
             // イベントを登録
             Button btn = mc.btn;
-            if (btn == null) { continue; }
+            if (btn == null) {
+                Debug.LogWarning(mc.name + "のButtonがnullです");
+                continue;
+            }
             //btn.onClick.AddListener(() => OnClick_Log(pc.name));
             btn.onClick.AddListener(() => OnClick_SwitchMusic(mc.btn, mc.name));
 
@@ -40,6 +43,10 @@ public class UIMusicButtonList : MonoBehaviour
             Text text;
             text = btn.transform.Find("Text").GetComponent<Text>();
             text.text = mc.name;
+            if (scene.name == mc.name)
+            {
+                text.text += "(Selected)";
+            }
         }
     }
 

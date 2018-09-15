@@ -12,16 +12,14 @@ public class SingletonSceneManager : SingletonMonoBehaviour<SingletonSceneManage
     UIPrivateChannelButtonList uiPrivateChannelButtonList;
     UIMusicButtonList uiMusicButtonList;
 
-    public void Awake()
-    {
-        if (this != Instance)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        DontDestroyOnLoad(this.gameObject);
+    SingletonPositionManager singletonPositionManager;
 
+    // 基底クラスのAwakeを呼び出せるようにするためnewをつける
+    new private void Awake()
+    {
+        base.Awake();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -41,5 +39,15 @@ public class SingletonSceneManager : SingletonMonoBehaviour<SingletonSceneManage
 
         uiMusicButtonList = GameObject.Find("MusicManager").GetComponent<UIMusicButtonList>();
         uiMusicButtonList.OnSceneLoaded_RegisterButtonEvent(scene, LoadSceneMode.Single);
+
+        // PublicPositionをロードする(引き継ぐ)
+        singletonPositionManager = GameObject.Find("PositionManager").GetComponent<SingletonPositionManager>();
+        singletonPositionManager.OnSceneLoaded_LoadPublicSpeakerPosition();
+    }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        // PublicPositionをセーブする
+        singletonPositionManager.OnSceneUnloaded_SavePublicSpeakerPosition();
     }
 }

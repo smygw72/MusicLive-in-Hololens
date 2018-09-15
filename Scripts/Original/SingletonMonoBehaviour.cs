@@ -16,9 +16,17 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
                     Debug.LogError(typeof(T) + "is nothing");
                 }
             }
-
             return instance;
         }
     }
 
+    protected void Awake()
+    {
+        if (this != Instance)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
 }

@@ -14,7 +14,7 @@ public class UIPrivateChannelButtonList : MonoBehaviour
     {
         public string name;
         public Button btn;
-        public AudioSource audioSource;
+        [System.NonSerialized] public AudioSource audioSource;
 
         public PrivateChannel(Button btn)
         {
@@ -106,13 +106,11 @@ public class UIPrivateChannelButtonList : MonoBehaviour
 
         if (@as.mute)
         {
-            Debug.Log("Disable");
             @as.mute = false;
             text.text = name + "(Disable?)";
         }
         else
         {
-            Debug.Log("Enable");
             @as.mute = true;
             text.text = name + "(Enable?)";
         }
