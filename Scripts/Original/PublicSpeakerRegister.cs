@@ -7,13 +7,8 @@ public class PublicSpeakerRegister : MonoBehaviour {
 
     private string musicName, publicName;
 
-    private void Awake()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded_SwitchAudioClip;
-    }
-
     // シーンを読み込むたびにAudioClipを入れ替える
-    private void OnSceneLoaded_SwitchAudioClip(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded_SwitchAudioClip(Scene scene, LoadSceneMode mode)
     {
         musicName = scene.name;
         Debug.Log(musicName + "シーンでpublicSpeakerの登録を行います");
@@ -29,8 +24,5 @@ public class PublicSpeakerRegister : MonoBehaviour {
         // AudioSourceの初期設定
         audioSource.spatialBlend = 1f;
         audioSource.Play();
-
-        // ボタンのイベント登録
-        uiPublicChannelButtonList.OnSpeakerRegistered();
     }
 }

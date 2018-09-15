@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MovePrivateSoundsPosition : MonoBehaviour {
 
-    GameObject publicSound;
+    GameObject publicSpeaker;
 
 	// Use this for initialization
 	void Start () {
-        publicSound = GameObject.Find("PublicSpeaker");
+        publicSpeaker = GameObject.Find("PublicSpeaker");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = publicSound.transform.position;
+        transform.position = publicSpeaker.transform.position;
 	}
 }

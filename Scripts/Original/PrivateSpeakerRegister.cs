@@ -9,14 +9,9 @@ public class PrivateSpeakerRegister : MonoBehaviour
     UIPrivateChannelButtonList uiPrivateChannelButtonList;
     List<UIPrivateChannelButtonList.PrivateChannel> privateChannelList;
 
-    private void Awake()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded_AddAudioSource;
-        SceneManager.sceneUnloaded += OnSceneLoaded_DeleteAudioSource;
-    }
 
     // シーンを読み込むたびにAudioClipを入れ替える
-    private void OnSceneLoaded_AddAudioSource(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded_AddAudioSource(Scene scene, LoadSceneMode mode)
     {
         musicName = scene.name;
         Debug.Log(musicName + "シーンでPrivateSpeakerの登録を行います");
@@ -36,18 +31,6 @@ public class PrivateSpeakerRegister : MonoBehaviour
             // AudioSourceの初期設定
             audioSource.spatialBlend = 1f;
             audioSource.Play();
-        }
-
-        // ボタンのイベント登録
-        uiPrivateChannelButtonList.OnSpeakerRegistered();
-    }
-
-    private void OnSceneLoaded_DeleteAudioSource(Scene scene)
-    {
-        AudioSource[] audioSources = gameObject.GetComponents<AudioSource>();
-        foreach(AudioSource audioSource in audioSources)
-        {
-            Destroy(audioSource);
         }
     }
 }

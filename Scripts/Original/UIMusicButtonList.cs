@@ -26,12 +26,7 @@ public class UIMusicButtonList : MonoBehaviour
     [SerializeField]
     private List<MusicChannel> MusicList;
 
-    private void Awake()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    public void OnSceneLoaded(Scene scene,LoadSceneMode mode)
+    public void OnSceneLoaded_RegisterButtonEvent(Scene scene,LoadSceneMode mode)
     {
         foreach (MusicChannel mc in MusicList)
         {

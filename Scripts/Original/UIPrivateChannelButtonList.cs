@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -15,7 +14,7 @@ public class UIPrivateChannelButtonList : MonoBehaviour
     {
         public string name;
         public Button btn;
-        [System.NonSerialized] public AudioSource audioSource;
+        public AudioSource audioSource;
 
         public PrivateChannel(Button btn)
         {
@@ -33,8 +32,7 @@ public class UIPrivateChannelButtonList : MonoBehaviour
         private set { privateChannelList = value; }
     }
 
-    // PrivateSpeakerRegisterで呼ばれる
-    public void OnSpeakerRegistered()
+    public void OnSceneLoaded_RegisterButtonEvent()
     {
         AudioSource[] audioSourceArr = GameObject.Find("PrivateSpeakers").GetComponents<AudioSource>();
 
@@ -48,11 +46,10 @@ public class UIPrivateChannelButtonList : MonoBehaviour
                     pc.audioSource = audioSorce;
                 }
             }
-            if (pc.audioSource == null) Debug.Log(name + "にAudioSourceが割り当てられませんでした");
+            if (pc.audioSource == null) Debug.LogError(name + "にAudioSourceが割り当てられませんでした");
 
             // イベントを登録
             Button btn = pc.btn;
-            if (btn == null) { continue; }
             //btn.onClick.AddListener(() => OnClick_Log(pc.name));
             btn.onClick.AddListener(() => OnClick_SwitchMute(pc.audioSource, pc.btn, pc.name));
 
@@ -109,11 +106,13 @@ public class UIPrivateChannelButtonList : MonoBehaviour
 
         if (@as.mute)
         {
+            Debug.Log("Disable");
             @as.mute = false;
             text.text = name + "(Disable?)";
         }
         else
         {
+            Debug.Log("Enable");
             @as.mute = true;
             text.text = name + "(Enable?)";
         }

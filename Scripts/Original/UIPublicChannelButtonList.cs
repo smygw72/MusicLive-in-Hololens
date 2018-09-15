@@ -13,12 +13,12 @@ public class UIPublicChannelButtonList : MonoBehaviour
     public Button publicBtn;
     private AudioSource publicSource;
 
-    public void OnSpeakerRegistered()
+    public void OnSceneLoaded_RegisterButtonEvent()
     {
         publicSource = GameObject.Find("PublicSpeaker").GetComponent<AudioSource>();
 
         // Error処理
-        if (publicSource == null) Debug.Log(publicName + "にAudioSourceが割り当てられませんでした");
+        if (publicSource == null) Debug.LogError(publicName + "にAudioSourceが割り当てられませんでした");
 
         // イベントを登録
         if (publicBtn != null)
