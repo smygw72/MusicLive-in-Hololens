@@ -45,11 +45,13 @@ public class UIPublicChannelButtonList : MonoBehaviour
 
         if (publicSource.mute)
         {
+            //Debug.Log("OFF");
             publicSource.mute = false;
             text.text = publicName + "(Disable?)";
         }
         else
         {
+            //Debug.Log("ON");
             publicSource.mute = true;
             text.text = publicName + "(Enable?)";
         }

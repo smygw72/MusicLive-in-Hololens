@@ -15,11 +15,16 @@ public class SingletonSceneManager : SingletonMonoBehaviour<SingletonSceneManage
     SingletonPositionManager singletonPositionManager;
 
     // 基底クラスのAwakeを呼び出せるようにするためnewをつける
-    new private void Awake()
+    private void Awake()
     {
-        base.Awake();
+        Debug.Log("ScneManager Awake!");
+        if (this != Instance)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -43,11 +48,5 @@ public class SingletonSceneManager : SingletonMonoBehaviour<SingletonSceneManage
         // PublicPositionをロードする(引き継ぐ)
         singletonPositionManager = GameObject.Find("PositionManager").GetComponent<SingletonPositionManager>();
         singletonPositionManager.OnSceneLoaded_LoadPublicSpeakerPosition();
-    }
-
-    private void OnSceneUnloaded(Scene scene)
-    {
-        // PublicPositionをセーブする
-        //singletonPositionManager.OnSceneUnloaded_SavePublicSpeakerPosition();
     }
 }

@@ -2,7 +2,7 @@
 
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T instance;
+    private static T instance; // 最初のシーンのインスタンスがずっと残る
     public static T Instance
     {
         get
@@ -18,15 +18,5 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour
             }
             return instance;
         }
-    }
-
-    protected void Awake()
-    {
-        if (this != Instance)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        DontDestroyOnLoad(this.gameObject);
     }
 }
