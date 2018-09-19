@@ -94,7 +94,7 @@ public class UIPrivateChannelButtonList : MonoBehaviour
     //    return ps.btn;
     //}
 
-    #region CallBack Function
+    #region "CallBack Function"
     private void OnClick_Log(string key)
     {
         Debug.Log(key);

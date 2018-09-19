@@ -33,7 +33,7 @@ public class UIPublicChannelButtonList : MonoBehaviour
         }
     }
 
-    #region CallBack Function
+    #region "CallBack Function"
     private void OnClick_Log()
     {
         Debug.Log(publicName);
