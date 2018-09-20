@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PrivateSpeakerRegister : MonoBehaviour
+public class PrivateSpeakerController : MonoBehaviour
 {
     private string musicName, privateName;
     UIPrivateChannelButtonList uiPrivateChannelButtonList;
     List<UIPrivateChannelButtonList.PrivateChannel> privateChannelList;
-
 
     // シーンを読み込むたびにAudioClipを入れ替える
     public void OnSceneLoaded_AddAudioSource(Scene scene, LoadSceneMode mode)
@@ -30,7 +30,24 @@ public class PrivateSpeakerRegister : MonoBehaviour
 
             // AudioSourceの初期設定
             audioSource.spatialBlend = 1f;
-            audioSource.Play();
+        }
+    }
+
+    public void PlayOrPause(Text text)
+    {
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        foreach(var @as in audioSources)
+        {
+            if (@as.isPlaying)
+            {
+                @as.Pause();
+                text.text = "Play!!";
+            }
+            else
+            {
+                @as.Play();
+                text.text = "Pause";
+            }
         }
     }
 }

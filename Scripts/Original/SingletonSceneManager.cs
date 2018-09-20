@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SingletonSceneManager : SingletonMonoBehaviour<SingletonSceneManager>
 {
-    PublicSpeakerRegister publicSpeakerRegister;
-    PrivateSpeakerRegister privateSpeakerRegister;
+    PublicSpeakerController publicSpeakerRegister;
+    PrivateSpeakerController privateSpeakerRegister;
 
     UIPublicChannelButtonList uiPublicChannelButtonList;
     UIPrivateChannelButtonList uiPrivateChannelButtonList;
@@ -27,11 +27,12 @@ public class SingletonSceneManager : SingletonMonoBehaviour<SingletonSceneManage
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    // 依存関係があるので順番大事！！！！
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // 曲の入れ替え
-        publicSpeakerRegister = GameObject.Find("PublicSpeaker").GetComponent<PublicSpeakerRegister>();
-        privateSpeakerRegister = GameObject.Find("PrivateSpeakers").GetComponent<PrivateSpeakerRegister>();
+        publicSpeakerRegister = GameObject.Find("PublicSpeaker").GetComponent<PublicSpeakerController>();
+        privateSpeakerRegister = GameObject.Find("PrivateSpeakers").GetComponent<PrivateSpeakerController>();
         publicSpeakerRegister.OnSceneLoaded_SwitchAudioClip(scene, LoadSceneMode.Single);
         privateSpeakerRegister.OnSceneLoaded_AddAudioSource(scene, LoadSceneMode.Single);
 

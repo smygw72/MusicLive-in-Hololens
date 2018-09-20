@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SingletonPositionManager : SingletonMonoBehaviour<SingletonPositionManager> {
 
+    static public Vector3 mainCameraPosition;
     static public Vector3 publicSpeakerPosition;
 
     private void Awake()
@@ -19,12 +20,14 @@ public class SingletonPositionManager : SingletonMonoBehaviour<SingletonPosition
 
     public void OnSceneLoaded_LoadPublicSpeakerPosition()
     {
+        GameObject.Find("Main Camera").transform.position = mainCameraPosition;
         GameObject.Find("PublicSpeaker").transform.position = publicSpeakerPosition;
         Debug.Log("PublicPositionを引き継ぎました");
     }
 
     private void Update()
     {
+        mainCameraPosition = GameObject.Find("Main Camera").transform.position;
         publicSpeakerPosition = GameObject.Find("PublicSpeaker").transform.position;
     }
 }
